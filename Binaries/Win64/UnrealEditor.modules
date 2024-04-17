@@ -2,6 +2,8 @@
 	"BuildId": "27405482",
 	"Modules": 
 	{
+		"AssetEdit": "UnrealEditor-AssetEdit.dll",
+		"BlankTest": "UnrealEditor-BlankTest.dll",
 		"Ray_EditorTool": "UnrealEditor-Ray_EditorTool.dll"
 	}
 }

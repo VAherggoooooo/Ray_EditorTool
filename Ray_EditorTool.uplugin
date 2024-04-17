@@ -19,6 +19,16 @@
 			"Name": "Ray_EditorTool",
 			"Type": "Editor",
 			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "AssetEdit",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "BlankTest",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
 		}
 	]
 }
