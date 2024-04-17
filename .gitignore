@@ -1,3 +1,6 @@
 
 *.pdb
 Intermediate/
+*.exe
+*.exp
+*.lib

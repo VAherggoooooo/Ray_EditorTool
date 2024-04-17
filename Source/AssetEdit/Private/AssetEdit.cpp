@@ -61,7 +61,7 @@ void FAssetEditModule::TestFunction()
 {
     TArray<FAssetData> SelectedAssets;
     FContentBrowserModule& ContentBrowserModule = FModuleManager::LoadModuleChecked<FContentBrowserModule>("ContentBrowser");
-    ContentBrowserModule.Get().GetSelectedAssets(SelectedAssets);//获得选中项
+    ContentBrowserModule.Get().GetSelectedAssets(SelectedAssets);//获得当前内容浏览器的选中项(可以多选)
     
     for (const FAssetData& AssetData : SelectedAssets)
     {
