@@ -1,4 +1,6 @@
 ﻿#include "AssetEdit.h"
+
+#include "AssetEditFunctions.h"
 #include "ContentBrowserModule.h"
 #include "IContentBrowserSingleton.h"
 
@@ -45,19 +47,28 @@ void FAssetEditModule::AddToMenuEntry(FMenuBuilder& MenuBuilder)
 {
     MenuBuilder.BeginSection("AssetEditMenu", FText::FromString(TEXT("AssetEdit")));
 
+
+    
     //添加一个action
 
-    //不包含submenu 直接写
+    //====================================
+    //1.不包含submenu 直接写
     // MenuBuilder.AddMenuEntry(
     //     FText::FromString(TEXT("Test Function")),
     //     FText::FromString(TEXT("Test Function")),
     //     FSlateIcon(),
     //     //绑定action对应回调函数
     //     FUIAction(FExecuteAction::CreateRaw(this, &FAssetEditModule::TestFunction)));
+    //====================================
 
-    //包含submenu
+    
+    //====================================
+    //2.包含submenu
     MenuBuilder.AddSubMenu(FText::FromString(TEXT("Test Function Sub")),FText::FromString(TEXT("Test Test")),
         FNewMenuDelegate::CreateRaw(this,&FAssetEditModule::AddSubMenu));
+    //====================================
+
+
     
     MenuBuilder.EndSection();
 }

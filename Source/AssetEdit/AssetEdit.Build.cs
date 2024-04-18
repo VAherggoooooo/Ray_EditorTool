@@ -20,7 +20,8 @@ public class AssetEdit : ModuleRules
                 "Engine",
                 "Slate",
                 "SlateCore", 
-                "AssetTool",
+                "UnrealEd",
+                "MaterialEditor",
             }
         );
     }
