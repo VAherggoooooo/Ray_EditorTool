@@ -14,13 +14,15 @@ public:
 	UFUNCTION(BlueprintCallable)
 	static void SetMIScalarParameter(const TArray<UObject*>& Assets, FName ParameterName, float Value, EMaterialParameterAssociation Association = EMaterialParameterAssociation::GlobalParameter);
 
+	UFUNCTION(BlueprintCallable)
+	static void SetMIScalarParameter_Single(UMaterialInstanceConstant* MIC, FName ParameterName, float Value, EMaterialParameterAssociation Association = EMaterialParameterAssociation::GlobalParameter);
+
+	UFUNCTION(BlueprintCallable)
+	static void SetMIVectorParameter_Single(UMaterialInstanceConstant* MIC, FName ParameterName, FVector4f Value, EMaterialParameterAssociation Association = EMaterialParameterAssociation::GlobalParameter);
+
 	//设置材质实例texture参数
 	UFUNCTION(BlueprintCallable)
 	static void SetMITextureParameter(const TArray<UObject*>& Assets, FName ParameterName, UTexture* Value, EMaterialParameterAssociation Association = EMaterialParameterAssociation::GlobalParameter);
-
-	//将多张贴图合并到RGBA
-	UFUNCTION(BlueprintCallable)
-	static void CombineTexture(const TArray<UObject*>& Assets, int SizeX = 512, int SizeY = 512, bool bDrawOnly = false);
 
 	//导出资源预览图
 	UFUNCTION(BlueprintCallable)
