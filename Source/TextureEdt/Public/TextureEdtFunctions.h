@@ -22,4 +22,17 @@ public:
 	//T2D导出到本地
 	UFUNCTION(BlueprintCallable)
 	static bool ExportT2D(UTexture2D* Texture2D, const FString& Path/*地址用反斜杠: \  */);
+
+
+	//TODO: 创建Texture2D https://isaratech.com/save-a-procedurally-generated-texture-as-a-new-asset/
+	UFUNCTION(BlueprintCallable)
+	static UTexture2D* CreateT2DFromRT(UTextureRenderTarget2D* RenderTarget, FString OutPath = "NULL", bool bUseCustomPath = false, FString InName = "Texture", enum TextureCompressionSettings CompressionSettings = TC_Default, enum TextureMipGenSettings MipSettings = TMGS_FromTextureGroup);
+	
+	UFUNCTION(BlueprintCallable)
+	static UTexture2D* LoadImageToT2D(const FString& ImagePath/*完整路径包含后缀 / */);
+
+
+	//TODO: 加载图片并保存 https://zhuanlan.zhihu.com/p/66890786
+	UFUNCTION(BlueprintCallable)
+	static UTexture2D* LoadImageToT2D_Save(const FString& ImagePath/*完整路径包含后缀 / */);
 };

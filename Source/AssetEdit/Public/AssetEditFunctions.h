@@ -24,10 +24,15 @@ public:
 	UFUNCTION(BlueprintCallable)
 	static void SetMITextureParameter(const TArray<UObject*>& Assets, FName ParameterName, UTexture* Value, EMaterialParameterAssociation Association = EMaterialParameterAssociation::GlobalParameter);
 
+	UFUNCTION(BlueprintCallable)
+	static void SetMITextureParameter_Single(UMaterialInstanceConstant* MIC, FName ParameterName, UTexture* Value, EMaterialParameterAssociation Association = EMaterialParameterAssociation::GlobalParameter);
+
+	
 	//导出资源预览图
 	UFUNCTION(BlueprintCallable)
 	static void ExportThumbnail(const TArray<UObject*>& Assets, int32 OutputSize);
-
-
+	
 	static UTexture2D* GetObjThumbnail(UObject *InObject, FString OutputPath,int32 OutputSize = 128);
+
+	
 };

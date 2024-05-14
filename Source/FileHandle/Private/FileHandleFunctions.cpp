@@ -76,3 +76,29 @@ FString UFileHandleFunctions::SelectFilePath()
 	
 	return FilePath;
 }
+
+FString UFileHandleFunctions::GetPackagePath(UObject* InObject)
+{
+	FString AssetName = InObject->GetOutermost()->GetName();
+	const FString SanitizedBasePackageName = UPackageTools::SanitizePackageName(AssetName);
+	FString _Path = FPackageName::GetLongPackagePath(SanitizedBasePackageName) + TEXT("/");
+	return _Path;
+}
+
+TSharedPtr<IImageWrapper> UFileHandleFunctions::GetImageWrapper(const FString& ImagePath)
+{
+	IImageWrapperModule& ImageWrapperModule = FModuleManager::LoadModuleChecked<IImageWrapperModule>(FName("ImageWrapper"));
+	if (ImagePath.EndsWith(".png"))
+	{
+		return ImageWrapperModule.CreateImageWrapper(EImageFormat::PNG);
+	}
+	else if (ImagePath.EndsWith(".jpg") || ImagePath.EndsWith(".jpeg"))
+	{
+		return ImageWrapperModule.CreateImageWrapper(EImageFormat::JPEG);
+	}
+	else if (ImagePath.EndsWith(".bmp"))
+	{
+		return ImageWrapperModule.CreateImageWrapper(EImageFormat::BMP);
+	}
+	return nullptr;
+}

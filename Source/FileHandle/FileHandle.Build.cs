@@ -22,6 +22,7 @@ public class FileHandle : ModuleRules
                 "SlateCore", 
                 "UnrealEd",
                 "MaterialEditor",
+                "ImageWrapper",
             }
         );
     }

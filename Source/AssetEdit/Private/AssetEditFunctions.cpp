@@ -1,12 +1,16 @@
 #include "AssetEditFunctions.h"
 
 #include "AssetEditLogging.h"
+#include "AssetToolsModule.h"
 #include "CanvasTypes.h"
 #include "Editor.h"
 #include "FileHandleFunctions.h"
+#include "IAssetTools.h"
 #include "IImageWrapper.h"
 #include "IImageWrapperModule.h"
 #include "ObjectTools.h"
+#include "PackageTools.h"
+#include "AssetRegistry/AssetRegistryModule.h"
 #include "Engine/Canvas.h"
 #include "Kismet/KismetRenderingLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
@@ -64,6 +68,14 @@ void UAssetEditFunctions::SetMITextureParameter(const TArray<UObject*>& Assets, 
 	EditorAssetSubsystem->SaveLoadedAssets(Assets, false);
 }
 
+void UAssetEditFunctions::SetMITextureParameter_Single(UMaterialInstanceConstant* MIC, FName ParameterName,
+	UTexture* Value, EMaterialParameterAssociation Association)
+{
+	if(MIC)
+	{
+		UMaterialEditingLibrary::SetMaterialInstanceTextureParameterValue(MIC, ParameterName, Value, Association);
+	}
+}
 
 
 void UAssetEditFunctions::ExportThumbnail(const TArray<UObject*>& Assets, int32 OutputSize)
@@ -115,3 +127,6 @@ UTexture2D* UAssetEditFunctions::GetObjThumbnail(UObject* InObject, FString Outp
 	UKismetSystemLibrary::PrintString(GEditor->GetEditorWorldContext().World(), Text);
 	return ReTexture2d;
 }
+
+
+

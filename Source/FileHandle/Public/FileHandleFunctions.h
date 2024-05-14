@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "IDesktopPlatform.h"
+#include "IImageWrapperModule.h"
 #include "FileHandleFunctions.generated.h"
 
 /**
@@ -25,6 +26,11 @@ public:
 
 	UFUNCTION(CallInEditor, BlueprintCallable)
 	static FString SelectFilePath();
+
+	UFUNCTION(CallInEditor, BlueprintCallable)
+	static FString GetPackagePath(UObject* InObject);
+
+	static TSharedPtr<IImageWrapper> GetImageWrapper(const FString& ImagePath);
 };
 
 
