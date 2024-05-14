@@ -29,6 +29,11 @@
 			"Name": "BlankTest",
 			"Type": "Editor",
 			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "FileHandle",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault"
 		}
 	]
 }

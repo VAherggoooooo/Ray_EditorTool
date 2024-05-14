@@ -4,6 +4,7 @@
 	{
 		"AssetEdit": "UnrealEditor-AssetEdit.dll",
 		"BlankTest": "UnrealEditor-BlankTest.dll",
+		"FileHandle": "UnrealEditor-FileHandle.dll",
 		"Ray_EditorTool": "UnrealEditor-Ray_EditorTool.dll"
 	}
 }

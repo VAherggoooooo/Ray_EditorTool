@@ -1,6 +1,7 @@
 ﻿#include "AssetEdit.h"
 
 #include "AssetEditFunctions.h"
+#include "AssetEditLogging.h"
 #include "ContentBrowserModule.h"
 #include "IContentBrowserSingleton.h"
 
@@ -98,7 +99,7 @@ void FAssetEditModule::TestFunction()
         UObject* Asset = AssetData.GetAsset();//筛选Uobject
         if(Asset)
         {
-            UE_LOG(LogTemp, Log,TEXT("Asset: %s"),*AssetData.AssetName.ToString());
+            UE_LOG(LogAssetEdit, Log,TEXT("Asset: %s"),*AssetData.AssetName.ToString());
         }
     }
 } 

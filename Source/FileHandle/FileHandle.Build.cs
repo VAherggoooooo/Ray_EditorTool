@@ -1,8 +1,8 @@
 ﻿using UnrealBuildTool;
 
-public class AssetEdit : ModuleRules
+public class FileHandle : ModuleRules
 {
-    public AssetEdit(ReadOnlyTargetRules Target) : base(Target)
+    public FileHandle(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
@@ -21,9 +21,7 @@ public class AssetEdit : ModuleRules
                 "Slate",
                 "SlateCore", 
                 "UnrealEd",
-                "MaterialEditor", 
-                "FileHandle",
-                "ImageWrapper",
+                "MaterialEditor",
             }
         );
     }
