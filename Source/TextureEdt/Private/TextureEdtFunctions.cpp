@@ -245,14 +245,17 @@ UTexture2D* UTextureEdtFunctions::LoadImageToT2D_Save(const FString& ImagePath, 
 			TArray <uint8> UncompressedBGRA;        
 			if (ImageWrapper->GetRaw(ERGBFormat::BGRA, 8, UncompressedBGRA))
 			{
-				FString AssetPath = SavePath;
+				IAssetTools& AssetTools = FModuleManager::Get().LoadModuleChecked<FAssetToolsModule>("AssetTools").Get();
 				FString TextureName = UFileHandleFunctions::GetNameFromLocalFullPath(ImagePath);
-				AssetPath += TextureName;
+				FString AssetName, PackagePath;
+				AssetTools.CreateUniqueAssetName(SavePath, TextureName, PackagePath, AssetName);
+
+				FString AssetPath = SavePath + AssetName;
 				UPackage* Package = CreatePackage(*AssetPath);
 				Package->FullyLoad();
 
 				//创建
-				NewTex = NewObject<UTexture2D>(Package, FName(*TextureName), RF_Public | RF_Standalone | RF_MarkAsRootSet);
+				NewTex = NewObject<UTexture2D>(Package, FName(*AssetName), RF_Public | RF_Standalone | RF_MarkAsRootSet);
 				NewTex->AddToRoot();            
 				NewTex->PlatformData = new FTexturePlatformData();  
 				NewTex->PlatformData->SizeX = ImageWrapper->GetWidth();
