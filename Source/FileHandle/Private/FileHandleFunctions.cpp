@@ -102,3 +102,12 @@ TSharedPtr<IImageWrapper> UFileHandleFunctions::GetImageWrapper(const FString& I
 	}
 	return nullptr;
 }
+
+FString UFileHandleFunctions::GetNameFromLocalFullPath(FString FullPath)
+{
+	TArray<FString> stringArray1, stringArray2;  
+	FullPath.ParseIntoArray(stringArray1, TEXT("/"), false);
+	stringArray1[stringArray1.Num()-1].ParseIntoArray(stringArray2, TEXT("."), false);
+	if(stringArray2.Num() <= 0) return FString("");
+	return stringArray2[0];
+}

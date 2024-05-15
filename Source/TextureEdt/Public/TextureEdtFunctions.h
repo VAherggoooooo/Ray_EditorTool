@@ -34,5 +34,5 @@ public:
 
 	//TODO: 加载图片并保存 https://zhuanlan.zhihu.com/p/66890786
 	UFUNCTION(BlueprintCallable)
-	static UTexture2D* LoadImageToT2D_Save(const FString& ImagePath/*完整路径包含后缀 / */);
+	static UTexture2D* LoadImageToT2D_Save(const FString& ImagePath/*完整路径包含后缀 / */, FString SavePath);
 };

@@ -224,7 +224,64 @@ UTexture2D* UTextureEdtFunctions::LoadImageToT2D(const FString& ImagePath)
 	return LoadTexture;
 }
 
-UTexture2D* UTextureEdtFunctions::LoadImageToT2D_Save(const FString& ImagePath)
+UTexture2D* UTextureEdtFunctions::LoadImageToT2D_Save(const FString& ImagePath, FString SavePath)
 {
-	return nullptr;
+	// https://stackoverflow.com/questions/73959254/linking-error-in-ue4-when-getassettools-is-used-in-code
+
+	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*ImagePath))
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Image path is not exist!"));
+		return nullptr;
+	}
+	
+	UTexture2D* NewTex = nullptr;
+	
+	TArray<uint8> RawFileData;
+	if (FFileHelper::LoadFileToArray(RawFileData, *ImagePath))
+	{
+		TSharedPtr<IImageWrapper> ImageWrapper = UFileHandleFunctions::GetImageWrapper(ImagePath);
+		if (ImageWrapper.IsValid() && ImageWrapper->SetCompressed(RawFileData.GetData(), RawFileData.GetAllocatedSize()))//SourceImageData.GetAllocatedSize()
+		{
+			TArray <uint8> UncompressedBGRA;        
+			if (ImageWrapper->GetRaw(ERGBFormat::BGRA, 8, UncompressedBGRA))
+			{
+				FString AssetPath = SavePath;
+				FString TextureName = UFileHandleFunctions::GetNameFromLocalFullPath(ImagePath);
+				AssetPath += TextureName;
+				UPackage* Package = CreatePackage(*AssetPath);
+				Package->FullyLoad();
+
+				//创建
+				NewTex = NewObject<UTexture2D>(Package, FName(*TextureName), RF_Public | RF_Standalone | RF_MarkAsRootSet);
+				NewTex->AddToRoot();            
+				NewTex->PlatformData = new FTexturePlatformData();  
+				NewTex->PlatformData->SizeX = ImageWrapper->GetWidth();
+				NewTex->PlatformData->SizeY = ImageWrapper->GetHeight();
+				NewTex->PlatformData->SetNumSlices(1);
+				//设置像素格式
+				NewTex->PlatformData->PixelFormat = EPixelFormat::PF_B8G8R8A8;
+
+				//创建第一个MipMap
+				FTexture2DMipMap* Mip = new FTexture2DMipMap();
+				NewTex->PlatformData->Mips.Add(Mip);
+				Mip->SizeX = ImageWrapper->GetWidth();
+				Mip->SizeY = ImageWrapper->GetHeight();
+
+				//锁定Texture让它可以被修改
+				Mip->BulkData.Lock(LOCK_READ_WRITE);
+				uint8* TextureData = (uint8*)Mip->BulkData.Realloc(ImageWrapper->GetWidth() * ImageWrapper->GetHeight() * 4);
+				FMemory::Memcpy(TextureData, UncompressedBGRA.GetData(), sizeof(uint8) * ImageWrapper->GetWidth() * ImageWrapper->GetHeight() * 4);
+				Mip->BulkData.Unlock();
+
+				//通过以上步骤，我们完成数据的临时写入
+				//执行完以下这两个步骤，编辑器中的asset会显示可以保存的状态（如果是指定Asset来获取UTexture2D的指针的情况下）
+				NewTex->Source.Init(ImageWrapper->GetWidth(), ImageWrapper->GetHeight(), 1, 1, ETextureSourceFormat::TSF_BGRA8, UncompressedBGRA.GetData());
+				NewTex->UpdateResource();
+
+				Package->MarkPackageDirty();
+				FAssetRegistryModule::AssetCreated(NewTex);
+			}
+		}
+	}
+	return NewTex;
 }

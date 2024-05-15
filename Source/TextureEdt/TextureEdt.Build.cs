@@ -10,6 +10,7 @@ public class TextureEdt : ModuleRules
             new string[]
             {
                 "Core",
+                "AssetTools",
             }
         );
 
@@ -24,6 +25,7 @@ public class TextureEdt : ModuleRules
                 "MaterialEditor", 
                 "FileHandle",
                 "ImageWrapper",
+                "CoreUObject",
             }
         );
     }

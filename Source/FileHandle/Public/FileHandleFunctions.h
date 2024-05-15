@@ -31,6 +31,9 @@ public:
 	static FString GetPackagePath(UObject* InObject);
 
 	static TSharedPtr<IImageWrapper> GetImageWrapper(const FString& ImagePath);
+
+	UFUNCTION(Blueprintable)
+	static FString GetNameFromLocalFullPath(FString FullPath);
 };
 
 
