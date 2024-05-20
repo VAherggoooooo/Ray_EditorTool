@@ -1,5 +1,3 @@
-//MyMaterialShadingModelOutput.h 文件
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -12,6 +10,9 @@
 /**
  * 
  */
+
+//TODO: 看这个 https://github.com/Eragon-Brisingr/ToonShader
+
 UCLASS()
 class CUSTOMSHADINGMODEL_API UBaseShadingModelOutput : public UMaterialExpressionCustomOutput
 {
