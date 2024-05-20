@@ -4,6 +4,7 @@
 	{
 		"AssetEdit": "UnrealEditor-AssetEdit.dll",
 		"BlankTest": "UnrealEditor-BlankTest.dll",
+		"CustomShadingModel": "UnrealEditor-CustomShadingModel.dll",
 		"FileHandle": "UnrealEditor-FileHandle.dll",
 		"Ray_EditorTool": "UnrealEditor-Ray_EditorTool.dll",
 		"TextureEdt": "UnrealEditor-TextureEdt.dll"

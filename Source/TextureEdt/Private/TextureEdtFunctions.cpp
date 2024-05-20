@@ -73,7 +73,7 @@ bool UTextureEdtFunctions::ExportT2D(UTexture2D* Texture2D, const FString& Path)
 	Texture2D->SRGB = false;
 	Texture2D->UpdateResource();
 	
-	FTexture2DMipMap& mipmap = Texture2D->PlatformData->Mips[0];
+	FTexture2DMipMap& mipmap = Texture2D->GetPlatformData()->Mips[0];
 	uint8* Data = (uint8*)mipmap.BulkData.Lock(LOCK_READ_WRITE);
 	//FColor* FormatedImageData = static_cast<FColor*>(mipmap.BulkData.Lock(LOCK_READ_WRITE));
 	if (Data == nullptr)
@@ -83,8 +83,8 @@ bool UTextureEdtFunctions::ExportT2D(UTexture2D* Texture2D, const FString& Path)
 		return false;
 	}
 	
-	int width = Texture2D->PlatformData->SizeX;
-	int height = Texture2D->PlatformData->SizeY;
+	int width = Texture2D->GetPlatformData()->SizeX;
+	int height = Texture2D->GetPlatformData()->SizeY;
 	TArray<FColor> nColors;
 	
 	for (int32 y = 0; y < height; y++)
@@ -212,9 +212,9 @@ UTexture2D* UTextureEdtFunctions::LoadImageToT2D(const FString& ImagePath)
 				LoadTexture = UTexture2D::CreateTransient(ImageWrapper->GetWidth(), ImageWrapper->GetHeight(), PF_B8G8R8A8);
 
 				// 改写纹理数据
-				void* TextureData = LoadTexture->PlatformData->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
+				void* TextureData = LoadTexture->GetPlatformData()->Mips[0].BulkData.Lock(LOCK_READ_WRITE);
 				FMemory::Memcpy(TextureData, UncompressedBGRA.GetData(), UncompressedBGRA.Num());
-				LoadTexture->PlatformData->Mips[0].BulkData.Unlock();
+				LoadTexture->GetPlatformData()->Mips[0].BulkData.Unlock();
 
 				// 更新纹理数据
 				LoadTexture->UpdateResource();
@@ -257,16 +257,16 @@ UTexture2D* UTextureEdtFunctions::LoadImageToT2D_Save(const FString& ImagePath, 
 				//创建
 				NewTex = NewObject<UTexture2D>(Package, FName(*AssetName), RF_Public | RF_Standalone | RF_MarkAsRootSet);
 				NewTex->AddToRoot();            
-				NewTex->PlatformData = new FTexturePlatformData();  
-				NewTex->PlatformData->SizeX = ImageWrapper->GetWidth();
-				NewTex->PlatformData->SizeY = ImageWrapper->GetHeight();
-				NewTex->PlatformData->SetNumSlices(1);
+				NewTex->SetPlatformData(new FTexturePlatformData());  
+				NewTex->GetPlatformData()->SizeX = ImageWrapper->GetWidth();
+				NewTex->GetPlatformData()->SizeY = ImageWrapper->GetHeight();
+				NewTex->GetPlatformData()->SetNumSlices(1);
 				//设置像素格式
-				NewTex->PlatformData->PixelFormat = EPixelFormat::PF_B8G8R8A8;
+				NewTex->GetPlatformData()->PixelFormat = EPixelFormat::PF_B8G8R8A8;
 
 				//创建第一个MipMap
 				FTexture2DMipMap* Mip = new FTexture2DMipMap();
-				NewTex->PlatformData->Mips.Add(Mip);
+				NewTex->GetPlatformData()->Mips.Add(Mip);
 				Mip->SizeX = ImageWrapper->GetWidth();
 				Mip->SizeY = ImageWrapper->GetHeight();
 

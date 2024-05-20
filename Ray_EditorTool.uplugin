@@ -39,6 +39,11 @@
 			"Name": "TextureEdt",
 			"Type": "Editor",
 			"LoadingPhase": "PreDefault"
+		},
+		{
+			"Name": "CustomShadingModel",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
 		}
 	]
 }
