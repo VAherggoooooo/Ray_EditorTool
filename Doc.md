@@ -10,6 +10,8 @@ bEnableEditToolMenusUI=True
 ```
 
 +   重启引擎, window->enable menu editing, 就可以在需要的地方看见小齿轮
+  
+![image](https://github.com/VAherggoooooo/Ray_EditorTool/blob/main/Resources/DocImg/image-20240521161921777.png)
 
 ![image-20240521161921777](.\Resources\DocImg\image-20240521161921777.png)
 
