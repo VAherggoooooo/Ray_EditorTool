@@ -11,26 +11,26 @@ bEnableEditToolMenusUI=True
 
 +   重启引擎, window->enable menu editing, 就可以在需要的地方看见小齿轮
 
-![image-20240521161921777](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521161921777.png)
+![image-20240521161921777](.\Resources\DocImg\image-20240521161921777.png)
 
-![image-20240521162013518](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521162013518.png)
+![image-20240521162013518](.\Resources\DocImg\image-20240521162013518.png)
 
-![image-20240521162037699](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521162037699.png)
+![image-20240521162037699](.\Resources\DocImg\image-20240521162037699.png)
 
 +   例如主界面点小齿轮或Edit Menu, 可以看到LevelEditor.MainMenu就是插入口
 
-![image-20240521162119000](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521162119000.png)
+![image-20240521162119000](.\Resources\DocImg\image-20240521162119000.png)
 
 
 
 +   新建蓝图类, 继承EditorUtilityToolMenuEntry
 +   在class defaults编写data, menu可以是主插入口, 也可以找到一个sub插入口
 
-![image-20240521162403130](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521162403130.png)
+![image-20240521162403130](.\Resources\DocImg\image-20240521162403130.png)
 
 +   graph添加custom event, 命名为Run(固定规则命名)
 
-![image-20240521162639448](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521162639448.png)
+![image-20240521162639448](.\Resources\DocImg\image-20240521162639448.png)
 
 +   编写完graph后右键蓝图run可以看到效果
 +   打开\Config\DefaultEditorPerProjectUserSettings.ini
@@ -48,6 +48,6 @@ StartupObjects=/Ray_EditorTool/Blueprint/Editor_Utilities/Menu/BP_EditorToolMenu
 
 
 
-![image-20240521164625384](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521164625384.png)
+![image-20240521164625384](.\Resources\DocImg\image-20240521164625384.png)
 
-![image-20240521164643613](E:\UE_Project\NewGame\plugins\Ray_EditorTool\Resources\DocImg\image-20240521164643613.png)
+![image-20240521164643613](.\Resources\DocImg\image-20240521164643613.png)
