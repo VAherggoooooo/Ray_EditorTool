@@ -2,10 +2,12 @@
 
 
 #include "FileHandleFunctions.h"
-
 #include "DesktopPlatformModule.h"
+#include "EditorUtilitySubsystem.h"
+#include "EditorUtilityWidgetBlueprint.h"
 #include "IDesktopPlatform.h"
 #include "FileHelpers.h"
+#include "Subsystems/EditorAssetSubsystem.h"
 
 
 bool UFileHandleFunctions::OpenDirectoryExplor(const FString& Title, FString& InOutLastPath, FString& OutOpenFilenames)
@@ -110,4 +112,16 @@ FString UFileHandleFunctions::GetNameFromLocalFullPath(FString FullPath)
 	stringArray1[stringArray1.Num()-1].ParseIntoArray(stringArray2, TEXT("."), false);
 	if(stringArray2.Num() <= 0) return FString("");
 	return stringArray2[0];
+}
+
+void UFileHandleFunctions::RunEditorUtilityWidget(FString WidgetPath)
+{
+	//https://docs.unrealengine.com/4.27/zh-CN/ProgrammingAndScripting/ 好东西
+	UEditorAssetSubsystem* EditorAssetSubsystem = GEditor->GetEditorSubsystem<UEditorAssetSubsystem>();
+	UObject* asset = EditorAssetSubsystem->LoadAsset(WidgetPath);
+	if(asset == nullptr) return;
+	UEditorUtilityWidgetBlueprint* EditorWidget = Cast<UEditorUtilityWidgetBlueprint>(asset);
+	if(EditorWidget == nullptr) return;
+	UEditorUtilitySubsystem* EditorUtilitySubsystem = GEditor->GetEditorSubsystem<UEditorUtilitySubsystem>();
+	EditorUtilitySubsystem->SpawnAndRegisterTab(EditorWidget);
 }

@@ -32,8 +32,11 @@ public:
 
 	static TSharedPtr<IImageWrapper> GetImageWrapper(const FString& ImagePath);
 
-	UFUNCTION(Blueprintable)
+	UFUNCTION(BlueprintCallable)
 	static FString GetNameFromLocalFullPath(FString FullPath);
+
+	UFUNCTION(BlueprintCallable)
+	static void RunEditorUtilityWidget(FString WidgetPath);
 };
 
 
