@@ -2,6 +2,7 @@
 	"BuildId": "27405482",
 	"Modules": 
 	{
+		"AnimaAssetEdt": "UnrealEditor-AnimaAssetEdt.dll",
 		"AssetEdit": "UnrealEditor-AssetEdit.dll",
 		"BlankMenuTest": "UnrealEditor-BlankMenuTest.dll",
 		"BlankTableTest": "UnrealEditor-BlankTableTest.dll",

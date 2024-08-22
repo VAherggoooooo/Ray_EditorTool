@@ -54,6 +54,11 @@
 			"Name": "BlankMenuTest",
 			"Type": "Editor",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "AnimaAssetEdt",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	]
 }
