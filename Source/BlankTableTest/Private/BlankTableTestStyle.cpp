@@ -37,13 +37,17 @@ FName FBlankTableTestStyle::GetStyleSetName()
 
 const FVector2D Icon16x16(16.0f, 16.0f);
 const FVector2D Icon20x20(20.0f, 20.0f);
+const FVector2D Icon32x32(32.0f, 32.0f);
 
 TSharedRef< FSlateStyleSet > FBlankTableTestStyle::Create()
 {
 	TSharedRef< FSlateStyleSet > Style = MakeShareable(new FSlateStyleSet("BlankTableTestStyle"));
 	Style->SetContentRoot(IPluginManager::Get().FindPlugin("Ray_EditorTool")->GetBaseDir() / TEXT("Resources"));//!!!注意这里
+	Style->Set("BlankTableTest.PluginAction", new IMAGE_BRUSH(TEXT("Icon128"), Icon20x20));//注意这里
 
-	Style->Set("BlankTableTest.PluginAction", new IMAGE_BRUSH_SVG(TEXT("PlaceholderButtonIcon"), Icon20x20));
+	//Style->SetContentRoot(FPaths::EngineContentDir() / TEXT("Slate"));
+	//Style->Set("BlankTableTest.PluginAction", new IMAGE_BRUSH("Icons/Profiler/profiler_HotPath_32x", Icon32x32));
+	
 	return Style;
 }
 
