@@ -49,6 +49,11 @@
 			"Name": "BlankTableTest",
 			"Type": "Editor",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "BlankMenuTest",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	]
 }
