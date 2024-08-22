@@ -44,6 +44,11 @@
 			"Name": "CustomShadingModel",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "BlankTableTest",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	]
 }

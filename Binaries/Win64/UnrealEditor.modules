@@ -3,6 +3,7 @@
 	"Modules": 
 	{
 		"AssetEdit": "UnrealEditor-AssetEdit.dll",
+		"BlankTableTest": "UnrealEditor-BlankTableTest.dll",
 		"BlankTest": "UnrealEditor-BlankTest.dll",
 		"CustomShadingModel": "UnrealEditor-CustomShadingModel.dll",
 		"FileHandle": "UnrealEditor-FileHandle.dll",
